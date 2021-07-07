@@ -6,7 +6,7 @@ There is some confusion if the round of patches released by Microsoft on 6th Jul
 
 We have put together a step-by-step to run a test PoC to see if the recent patch has been effective for your machine. This guide will do no damage to your machine, neither should it crash the machine or spooler. It will simply write `C:\PrintNightmare.txt`
 
-Thanks to Huntress for releasing this PowerShell implementation of PrintNightmare
+Thanks to John Hammond and Caleb Stewart from Huntress for releasing this [PowerShell implementation](https://github.com/calebstewart/CVE-2021-1675) of PrintNightmare
 
 ## Pre-check
 ```powershell
