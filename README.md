@@ -19,7 +19,7 @@ Otherwise if running, begin exploitation.
 
 ## DLL
 
-If you trust us enough, we have a pre-compiled DLL you can download from right here. 
+If you trust us enough, we have a [pre-compiled DLL you can download from right here](nightmare.dll)
 
 This DLL will just print an innocent, non-malicious file called *Printnightmare.txt* to *C:\*
 
