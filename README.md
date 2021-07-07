@@ -26,7 +26,7 @@ sha256sum nightmare.dll
 #hash should be 894a086c62adbf9181e7c70f06f3d16364ce9019e9b041bc4d39f5c5193d8769
 ```
 
-This DLL will just print an innocent, non-malicious file called *Printnightmare.txt* to *C:\*
+This DLL will just create an innocent, non-malicious file, with no contents:*C:\Printnightmare.txt*
 
 Otherwise, you are welcome to follow the guidance below to compile the DLL yourself. Clicking the drop-down arrow below will open up compile guidance
 
