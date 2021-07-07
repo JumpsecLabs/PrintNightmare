@@ -89,6 +89,6 @@ Invoke-Nightmare -DLL "C:\nightmare.dll"
 ### Check C:\ for PrintNightmare.txt
 ![image](https://user-images.githubusercontent.com/49488209/124728938-eb470f80-df07-11eb-9acb-03bfe59a14ec.png)
 
-It doesn't matter what it's contents is, it just maters that it exists. 
+It doesn't matter what its contents is, it just matters that it exists. 
 
 ### For any questions, comments, and criticisms, please find us on Twitter at [LABS](https://twitter.com/jumpseclabs?lang=en) or on [MAIN](https://twitter.com/jumpsec)
