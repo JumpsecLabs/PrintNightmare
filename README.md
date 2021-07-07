@@ -17,6 +17,19 @@ get-service spooler
 If spooler isn't running, won't be vulnerable, you can quit here and now.
 Otherwise if running, begin exploitation.
 
+## DLL
+
+If you trust us enough, we have a pre-compiled DLL you can download from right here. 
+
+This DLL will just print an innocent, non-malicious file called *Printnightmare.txt* to *C:\*
+
+Otherwise, you are welcome to follow the guidance below to compile the DLL yourself:
+
+
+<details>
+    <summary>Compile non-malicious DLL</summary>
+
+
 ## Prepare non-Malicious DLL
 Run this on your attacker box
 
@@ -55,6 +68,9 @@ sudo x86_64-w64-mingw32-g++ -shared -o nightmare.dll nightmare.o -Wl,--out-impli
 ```
 ![image](https://user-images.githubusercontent.com/49488209/124728640-a9b66480-df07-11eb-9c9d-42e2cea1b6c7.png)
 
+</details>
+ 
+  
 ## Transfer DLL however you like, impacket's smbserver.py works
 ### In Kali
 ```bash
