@@ -9,6 +9,34 @@ When we at JUMPSEC saw that [Lares](https://github.com/LaresLLC/CVE-2021-1675/bl
 
 In this post, I leverage Tshark and see if it can reveal anything about the networking side of the PrintNightmare exploit. Our goal is purely exploratory, investigating the general workings and network activity of this exploit under the hood. 
 
+  * [What is PrintNightmare?](#what-is-printnightmare-)
+    + [What does PrintNightmare do?](#what-does-printnightmare-do-)
+    + [How does PrintNightmare work?](#how-does-printnightmare-work-)
+  * [What is Network Traffic?](#what-is-network-traffic-)
+    + [What is a PCAP?](#what-is-a-pcap-)
+      - [How to analyse a PCAP](#how-to-analyse-a-pcap)
+  * [PrintNightmare PCAP analysis how-to](#printnightmare-pcap-analysis-how-to)
+    + [Overview of the PCAP](#overview-of-the-pcap)
+      - [Who’s who?](#who-s-who-)
+    + [Enter the Packet](#enter-the-packet)
+      - [Peter Piper Picked a Protocol](#peter-piper-picked-a-protocol)
+      - [Picking on Protocols](#picking-on-protocols)
+        * [SMB](#smb)
+        * [SMB Files](#smb-files)
+        * [Spoolss](#spoolss)
+    + [Tangential PrintNightmare Packets](#tangential-printnightmare-packets)
+      - [Re-creating the Exploit](#re-creating-the-exploit)
+        * [Exploit](#exploit)
+        * [Brief Network Discussion](#brief-network-discussion)
+  * [Detecting Evil](#detecting-evil)
+    + [Acknowledgements](#acknowledgements)
+    + [Contact me](#contact-me)
+
+
+
+
+
+
 ## What is PrintNightmare?
 PrintNightmare exploded onto the scene late June / early July 2021. The security researchers who identified the vulnerability in the Microsoft Windows printer (spooler) function miscalculated the impact of releasing the proof of concept exploit to the internet. They later tried to delete the PoC, but the internet has a long memory. Originally labelled CVE-2021-1675, PrintNightmare was later classified as CVE-2021-34527. 
 
