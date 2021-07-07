@@ -19,11 +19,16 @@ Otherwise if running, begin exploitation.
 
 ## DLL
 
-If you trust us enough, we have a [pre-compiled DLL you can download from right here](nightmare.dll)
+If you trust us enough, we have a [pre-compiled DLL you can download from right here](nightmare.dll). Please check the hash matches
+
+```bash
+sha256sum nightmare.dll
+#hash should be 894a086c62adbf9181e7c70f06f3d16364ce9019e9b041bc4d39f5c5193d8769
+```
 
 This DLL will just print an innocent, non-malicious file called *Printnightmare.txt* to *C:\*
 
-Otherwise, you are welcome to follow the guidance below to compile the DLL yourself:
+Otherwise, you are welcome to follow the guidance below to compile the DLL yourself. Clicking the drop-down arrow below will open up compile guidance
 
 
 <details>
