@@ -48,7 +48,7 @@ sudo apt-get install g++-mingw-w64-x86-64
 nano nightmare.cpp
 ```
 
-This DLL will just print an innocent, non-malicious file called *Printnightmare.txt* to *C:\*
+This DLL will just print an innocent, non-malicious file called *Printnightmare.txt* to C:\
 
 ```cpp
 #include <windows.h>
