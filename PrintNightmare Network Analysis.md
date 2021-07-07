@@ -34,9 +34,6 @@ In this post, I leverage Tshark and see if it can reveal anything about the netw
 
 
 
-
-
-
 ## What is PrintNightmare?
 PrintNightmare exploded onto the scene late June / early July 2021. The security researchers who identified the vulnerability in the Microsoft Windows printer (spooler) function miscalculated the impact of releasing the proof of concept exploit to the internet. They later tried to delete the PoC, but the internet has a long memory. Originally labelled CVE-2021-1675, PrintNightmare was later classified as CVE-2021-34527. 
 
@@ -75,6 +72,7 @@ Now we’re all clear about PrintNightmare. What I’d like to do now is satisfy
 Network traffic is useful to security analysts who want to establish the facts fast. Earlier in 2021, [SANS had a fascinating discussion](https://www.sans.org/webcasts/packets-didnt-happen-network-driven-incident-investigations-119100/) on the advantages of increasing network traffic monitoring across organisations. Network traffic monitoring is usually placed as an alternative to endpoint log monitoring. The two are not mutually exclusive and a combination of both is wise. However, monitoring the network traffic is marginally better in this specific scenario, as:
 
 * Advanced adversaries have the capability to manipulate endpoint logging on a machine. However network traffic is much harder to manipulate and therefore can be trusted to a greater extent. 	
+
 * Network traffic captures the interaction between layers of the TCP/IP conversation that make our computers and the internet work. It is easier to filter through these different layers, protocols, and services at a network layer compared to the hundreds of thousands (if not millions) of endpoint logs that something like Sysmon could generate. Sifting through logs has it’s time and place of course, but analysing network traffic lets you surgically dissect evil in a way it finds difficult to hide itself from. 
 
 
@@ -104,10 +102,12 @@ This can be useful in other instances to gather the kind of metadata that will a
 
 #### Who’s who?
 Before we dive too deep into the packet, it’s advisable to see how many machines are involved in the traffic:
+
 ```bash
 tshark -r PrintNightmare.pcap -q -z endpoints,tcp
 tshark -r PrintNightmare.pcap -q -z conv,tcp
 ```
+
 ![image](https://user-images.githubusercontent.com/49488209/124769938-d0899080-df31-11eb-9aae-48e0cd311167.png)
 
 Here we gain insight about the IP addresses and ports involved in this conversation. Only 192.168.1.49 and 192.168.1.57 are in communication, between the ports 50070 and 445 respectively. We know the latter 445 port is typically SMB, so we can perhaps make an assumption that 192.168.1.57 is the target machine with it’s SMB port exposed. This makes 192.168.1.49 the attacker machine.
@@ -117,11 +117,13 @@ Now we know the victim machine, can we ascertain what users have been compromise
 ```bash
 tshark -r PrintNightmare.pcap -Y ntlmssp.auth.username
 ```
+
 ![image](https://user-images.githubusercontent.com/49488209/124770037-e72fe780-df31-11eb-8118-ded209e7057f.png)
 
 So did the Administrator user start this attack? Not exactly.
 
 What we can see in the red box below is that the attacker has compromised the credentials for the Administrator. Maybe it was the hash or the password. We can drill down into the packet, and gather more information about the hash, user, and domain:
+
 ```bash
 tshark -r PrintNightmare.pcap -Y ntlmssp.auth.username -V -x | ack -i ‘Response:|user|dns’
 ```
@@ -150,6 +152,7 @@ Remember earlier, I mentioned that RPC was involved in this whole thing. But in 
 Tshark gives us a quick way to just gather what protocols are involved full stop. No real details, just an overview.  The `-z` flag is all about providing overviews, summaries, and statistics of the protocols, services, layers, and other things that Tshark finds interesting.
 
 To get this protocol overview, let’s run the following:
+
 ```bash
 tshark -r PrintNightmare.pcap -q -z io,phs
 ```
@@ -169,6 +172,7 @@ Fortunately for us, Tshark has a flag for highlighting a specific protocol’s c
 ##### SMB
 
 Why don’t we start by asking what SMB, the foundations for internal network file sharing, is up to:
+
 ```bash
 tshark -r PrintNightmare.pcap -Y smb2.fid
 ```
@@ -186,6 +190,7 @@ I can see that a spoolss file is being spoken about in SMB. Let’s hone in on i
 ```bash
 tshark -r PrintNightmare.pcap -Y smb2.file_attribute.directory
 ```
+
 ![image](https://user-images.githubusercontent.com/49488209/124771851-6376fa80-df33-11eb-9c79-1894dfc32342.png)
 
 The SMB2 Create interaction is orientated around files – requesting files, creating files, providing access for files. I am intrigued! There was a file called spoolss (which is confusingly named, and we’ll get to that in a second.
@@ -219,6 +224,7 @@ Combining the knowledge we gained in the first point with this second point, we 
 If we want to understand what spoolss conversations are happening I don’t think we’ll get anything from this file. We’re better to filter for spoolss in Tshark and see what that yields.
 
 Spoolss utilises DCE/RPC and SMB as its transport protocols when involved in remote printing. If we were an adversary, we could focus on spoolss to identify documents being sent to the printer and we could intercept and steal them. For now, let’s just focus on Spools activity in this packet:
+
 ```bash
 tshark -r PrintNightmare.pcap -Y spoolss
 ```
@@ -299,7 +305,6 @@ A second that stands out to me under SMB this time is that we don’t have any c
 Here we can see my super malicious, very advanced malware: SuperEvil.dll. SuperEvil.dll is SMB hosted by the adversary and is being SMB accessed by the victim machine, to be weaponized at the spooler-service level. This makes a bit more sense to me, as the previous SMB create/request activity around the ‘spoolss file’ didn’t quite add up (networks are weird!).
 
 But now we can rest easy, happy that we empirically gathered evidence for our hypothesis that the SMB files being transferred were DLLs, not misplaced ‘spoolss’.
-
 
 ## Detecting Evil
 We’ve had fun on our magical, mystery tour, but everything has to come to an end. I wanted to finish by comparing the kind of detections that exist for PrintNightmare and how our detour down network traffic can enrich these detections.
