@@ -221,7 +221,8 @@ The SMB thing bugged me. Why did we read that spoolss was a file to be requested
 
 One of the nice things around investigations is that, really, they’re just an application of the Scientific Method. We can therefore re-create this exploit. And as long as we adhere to some of the rules around the variables that we change and do not change, then the results we can show here are just as valid as the results collected by Lares.
 
-> Chris Sanders talks a lot about how investigations are nothing more than the Scientific Method applied. The scientific method was hammered out a couple centuries ago and essentially it asks scientists to adhere to some basic rules around empiricism (seeing for oneself), methodology (standardised rules for observing), and replicability (write down your rules for observing so other people can try to observe too).
+> [Chris Sanders](https://www.youtube.com/watch?v=bn8lFTledwg) talks a lot about how investigations are nothing more than the Scientific Method applied. The scientific method was hammered out a couple centuries ago and essentially it asks scientists to adhere to some basic rules around empiricism (seeing for oneself), methodology (standardised rules for observing), and replicability (write down your rules for observing so other people can try to observe too).
+
 > Digital forensics and incident response investigations adhere to the Scientific Method, as we interrorage machines to gather observable evidence with community-standardised tooling in an industry-recognised method. And we do all of this to prove or disprove particular hypotheses or questions. Sometimes we set the hypothesis but other times  the hypothesis is someone else’s that they’ve tasked us to answer: “did this ex-employee delete every file off the Dropbox?”, for example.
 
 #### Re-creating the Exploit
