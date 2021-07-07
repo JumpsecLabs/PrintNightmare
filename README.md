@@ -1,8 +1,8 @@
 # Test if you are still vulnerable to PrintNightmare's privesc after patching
 
-PrintNightmare (CVE-2021-1675 / CVE 2021 34527) is an exploit that takes advantage of the AddPrintDriver function of the Spooler to arbitrarily execute files with high-privs.
+PrintNightmare (CVE-2021-1675 / CVE 2021 34527) is an exploit that takes advantage of the AddPrintDriver function of the Spooler to execute files with high-privs.
 
-There is some confusion if the round of patches released by Microsoft on 6th July 2021. It seems the RCE portion of the exploit is patched, but the privilege escalation may still be vulnerable.
+There is some confusion around the patches released by Microsoft on 6th July 2021. It seems the RCE portion of the exploit is patched, but the privilege escalation may still be vulnerable.
 
 We have put together a step-by-step to run a test PoC to see if the recent patch has been effective for your machine. This guide will do no damage to your machine, neither should it crash the machine or spooler. It will simply write `C:\PrintNightmare.txt`
 
