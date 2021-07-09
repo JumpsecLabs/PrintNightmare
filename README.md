@@ -40,8 +40,8 @@ Run this on your attacker box
 
 #### Install Dependencies
 ```bash
-sudo apt apt install gcc-mingw-w64
-sudo apt-get install g++-mingw-w64-x86-64
+sudo apt install gcc-mingw-w64
+sudo apt install g++-mingw-w64-x86-64
 ```
 ### Write the Dll
 ```bash
