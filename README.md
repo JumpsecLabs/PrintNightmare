@@ -14,8 +14,8 @@ get-service spooler
 ```
 ![image](https://user-images.githubusercontent.com/49488209/124728554-9a371b80-df07-11eb-8e91-8d30eea92e73.png)
 
-If spooler isn't running, won't be vulnerable, you can quit here and now.
-Otherwise if running, begin exploitation.
+If the spooler isn't running, the machine won't be vulnerabl. You can stop here and now.
+Otherwise if the spooler is running, begin exploitation.
 
 ## DLL
 
@@ -26,7 +26,7 @@ sha256sum nightmare.dll
 #hash should be 894a086c62adbf9181e7c70f06f3d16364ce9019e9b041bc4d39f5c5193d8769
 ```
 
-This DLL will just create an innocent, non-malicious file, with no contents:*C:\Printnightmare.txt*
+This DLL will just create an innocent, non-malicious file, with no contents: *C:\Printnightmare.txt*
 
 Otherwise, you are welcome to follow the guidance below to compile the DLL yourself. Clicking the drop-down arrow below will open up compile guidance
 
