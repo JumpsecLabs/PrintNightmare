@@ -9,6 +9,8 @@ I had some messages requesting a copy of the PCAP created in the [last section w
 You can find the [PCAP on this github here](attacker_side.pcapng). Please check the hash matches when you download
 `3be6c0b1a002ae1951634627e9c7e2cd2c806c8c457b513ed605f8eade4d08d6`
 
+I re-created the re-creation. So the usernames and filenames are different, but that is the only difference!
+
 ### Post continued
 
 The infosec community has been busy dissecting the PrintNightmare exploit. There are now variations of the exploit that can have various impacts on a target machine. 
