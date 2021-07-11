@@ -6,7 +6,7 @@
 ### Update 2021_July_11
 I had some messages requesting a copy of the PCAP created in the [last section where we re-create the exploit](#re-creating-the-exploit) to get better insight into the malicious files being transffered. 
 
-You can find the [PCAP on this github here](#attacker_side.pcapng). Please check the hash matches when you download
+You can find the [PCAP on this github here](attacker_side.pcapng). Please check the hash matches when you download
 `3be6c0b1a002ae1951634627e9c7e2cd2c806c8c457b513ed605f8eade4d08d6`
 
 ### Post continued
