@@ -3,6 +3,16 @@
 > 
 > Dray A, Security Researcher @ JUMPSEC
 
+### Update 2021_July_11
+I had some messages requesting a copy of the PCAP created in the [last section where we re-create the exploit](#re-creating-the-exploit) to get better insight into the malicious files being transffered. 
+
+You can find the [PCAP on this github here](attacker_side.pcapng). Please check the hash matches when you download
+`3be6c0b1a002ae1951634627e9c7e2cd2c806c8c457b513ed605f8eade4d08d6`
+
+I re-created the re-creation. So the usernames and filenames are different, but that is the only difference!
+
+### Post continued
+
 The infosec community has been busy dissecting the PrintNightmare exploit. There are now variations of the exploit that can have various impacts on a target machine. 
 
 When we at JUMPSEC saw that [Lares](https://github.com/LaresLLC/CVE-2021-1675/blob/main/zeek/PrintNightmare.pcap) had captured some network traffic of the PrintNightmare exploit in action, I wondered if there was an opportunity to gather network-level IoCs and processes that could offer defenders unique but consistent methods of detection across the various exploits. 
@@ -13,11 +23,11 @@ In this post, I leverage Tshark and see if it can reveal anything about the netw
     + [What does PrintNightmare do?](#what-does-printnightmare-do-)
     + [How does PrintNightmare work?](#how-does-printnightmare-work-)
   * [What is Network Traffic?](#what-is-network-traffic-)
-    + [What is a PCAP?](#what-is-a-pcap-)
+    + [What is a PCAP?](#what-is-a-pcap?)
       - [How to analyse a PCAP](#how-to-analyse-a-pcap)
   * [PrintNightmare PCAP analysis how-to](#printnightmare-pcap-analysis-how-to)
     + [Overview of the PCAP](#overview-of-the-pcap)
-      - [Who’s who?](#who-s-who-)
+      - [Who’s who?](#whos-who?)
     + [Enter the Packet](#enter-the-packet)
       - [Peter Piper Picked a Protocol](#peter-piper-picked-a-protocol)
       - [Picking on Protocols](#picking-on-protocols)
