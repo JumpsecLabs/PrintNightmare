@@ -14,7 +14,7 @@ get-service spooler
 ```
 ![image](https://user-images.githubusercontent.com/49488209/124728554-9a371b80-df07-11eb-8e91-8d30eea92e73.png)
 
-If the spooler isn't running, the machine won't be vulnerabl. You can stop here and now.
+If the spooler isn't running, the machine won't be vulnerable. You can stop here and now.
 Otherwise if the spooler is running, begin exploitation.
 
 ## DLL
